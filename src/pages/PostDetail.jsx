@@ -6,6 +6,7 @@ const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(() => {
     fetch(`/api/posts/${slug}`)
@@ -15,6 +16,8 @@ const PostDetail = () => {
       })
       .then(data => {
         setPost(data);
+        const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+        setHasLiked(likedPosts.includes(data.id));
         setLoading(false);
         // Track view only if not admin
         const isAdmin = localStorage.getItem('adminAuth') === 'true';
@@ -28,7 +31,7 @@ const PostDetail = () => {
       });
   }, [slug]);
 
-  const [startTime] = useState(Date.now());
+  const [startTime] = useState(() => Date.now());
 
   useEffect(() => {
     if (!post) return;
@@ -52,14 +55,7 @@ const PostDetail = () => {
     };
   }, [post, startTime]);
 
-  const [hasLiked, setHasLiked] = useState(false);
 
-  useEffect(() => {
-    if (post) {
-      const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
-      setHasLiked(likedPosts.includes(post.id));
-    }
-  }, [post]);
 
   const handleLike = async () => {
     try {

@@ -48,7 +48,7 @@ const Home = () => {
             {postsData.map(post => {
               // Extract first image from content as fallback
               let featuredImage = post.image;
-              const defaultImage = "https://images.unsplash.com/photo-1596434444211-38290263625f?auto=format&fit=crop&q=80&w=800";
+
               
               if (!featuredImage || featuredImage.includes('unsplash.com/photo-1596434444211-38290263625f')) {
                 const imgMatch = post.content ? post.content.match(/<img[^>]+src="([^">]+)"/) : null;

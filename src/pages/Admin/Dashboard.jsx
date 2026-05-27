@@ -17,7 +17,7 @@ const Dashboard = () => {
     fetchAds();
   }, [navigate]);
 
-  const fetchPosts = async () => {
+  async function fetchPosts() {
     try {
       const res = await fetch('/api/posts?admin=true');
       const data = await res.json();
@@ -27,7 +27,7 @@ const Dashboard = () => {
     }
   };
 
-  const fetchAds = async () => {
+  async function fetchAds() {
     try {
       const res = await fetch('/api/ads');
       const data = await res.json();

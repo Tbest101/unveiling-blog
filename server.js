@@ -217,7 +217,7 @@ app.post('/api/posts/:id/review', async (req, res) => {
       comment,
       date: new Date().toISOString()
     };
-    const post = await Post.findByIdAndUpdate(
+    await Post.findByIdAndUpdate(
       req.params.id, 
       { $push: { reviews: review } }, 
       { new: true }
