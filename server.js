@@ -60,29 +60,19 @@ const adSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', postSchema);
 const Ad = mongoose.model('Ad', adSchema);
 
-// Set up image upload using Multer
-const storage = multer.diskStorage({
-  destination: async (req, file, cb) => {
-    const uploadPath = path.join(__dirname, 'public', 'uploads');
-    try {
-      await fs.mkdir(uploadPath, { recursive: true });
-      cb(null, uploadPath);
-    } catch (err) {
-      cb(err, uploadPath);
-    }
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${uuidv4()}${path.extname(file.originalname)}`);
-  }
-});
+// Set up image upload using Multer with Memory Storage for Base64 encoding
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 app.post('/api/upload', upload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });
   }
-  const imageUrl = `/uploads/${req.file.filename}`;
-  res.json({ url: imageUrl });
+  
+  const base64Data = req.file.buffer.toString('base64');
+  const dataUrl = `data:${req.file.mimetype};base64,${base64Data}`;
+  
+  res.json({ url: dataUrl });
 });
 
 // GET all ads
