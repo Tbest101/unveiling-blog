@@ -6,8 +6,13 @@ const AdCarousel = () => {
   useEffect(() => {
     fetch('/api/ads')
       .then(res => res.json())
-      .then(data => setAds(data))
-      .catch(err => console.error(err));
+      .then(data => {
+        setAds(Array.isArray(data) ? data : []);
+      })
+      .catch(err => {
+        console.error(err);
+        setAds([]);
+      });
   }, []);
 
   if (ads.length === 0) return null;
