@@ -218,6 +218,21 @@ app.post('/api/posts/:id/review', async (req, res) => {
   }
 });
 
+// Migration Endpoint
+app.get('/api/seed', async (req, res) => {
+  try {
+    const postsData = await fs.readFile(path.join(__dirname, 'src', 'data', 'posts.json'), 'utf-8');
+    const posts = JSON.parse(postsData);
+    
+    await Post.deleteMany({});
+    await Post.insertMany(posts);
+    
+    res.send(`<h1>Success!</h1><p>Successfully imported ${posts.length} posts to your MongoDB Atlas Database!</p><br><a href="/">Go back to your blog</a>`);
+  } catch (err) {
+    res.status(500).send(`<h1>Error</h1><p>${err.message}</p>`);
+  }
+});
+
 // PROD: Serve built frontend
 const distPath = path.join(__dirname, 'dist');
 app.use(express.static(distPath));
