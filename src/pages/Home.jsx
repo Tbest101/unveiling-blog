@@ -12,11 +12,17 @@ const Home = () => {
     fetch('/api/posts')
       .then(res => res.json())
       .then(data => {
-        setPostsData(data);
+        if (Array.isArray(data)) {
+          setPostsData(data);
+        } else {
+          console.error("API Error:", data);
+          setPostsData([]);
+        }
         setLoading(false);
       })
       .catch(err => {
         console.error("Error fetching posts:", err);
+        setPostsData([]);
         setLoading(false);
       });
   }, []);

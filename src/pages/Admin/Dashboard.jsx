@@ -21,9 +21,10 @@ const Dashboard = () => {
     try {
       const res = await fetch('/api/posts?admin=true');
       const data = await res.json();
-      setPosts(data);
+      setPosts(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error(err);
+      setPosts([]);
     }
   };
 
@@ -31,9 +32,10 @@ const Dashboard = () => {
     try {
       const res = await fetch('/api/ads');
       const data = await res.json();
-      setAds(data);
+      setAds(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error(err);
+      setAds([]);
     }
   };
 
