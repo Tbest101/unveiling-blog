@@ -28,7 +28,7 @@ const Editor = () => {
           body: formData
         });
         const data = await res.json();
-        
+
         const editor = quillRef.current.getEditor();
         const range = editor.getSelection(true);
         editor.insertEmbed(range.index, 'image', data.url);
@@ -44,7 +44,7 @@ const Editor = () => {
       container: [
         [{ 'header': [1, 2, 3, false] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         [{ 'align': [] }],
         ['link', 'image'],
         ['clean']
@@ -68,7 +68,7 @@ const Editor = () => {
       navigate('/admin');
       return;
     }
-    
+
     if (!isNew) {
       fetch(`/api/posts?admin=true`)
         .then(res => res.json())
@@ -89,7 +89,7 @@ const Editor = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    
+
     // Get the latest content from the editor
     const currentContent = quillRef.current.getEditor().root.innerHTML;
     const updatedFormData = { ...formData, content: currentContent };
@@ -98,7 +98,7 @@ const Editor = () => {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = currentContent;
     const firstImg = tempDiv.querySelector('img');
-    
+
     if (firstImg) {
       updatedFormData.image = firstImg.getAttribute('src');
     }
@@ -112,7 +112,7 @@ const Editor = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedFormData)
       });
-      
+
       if (res.ok) {
         navigate('/admin/dashboard');
       } else {
@@ -133,19 +133,19 @@ const Editor = () => {
       <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2rem' }}>
         <div>
           <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Title</label>
-          <input 
+          <input
             type="text" name="title" value={formData.title} onChange={handleChange} required
             style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--glass-border)', backgroundColor: 'var(--glass-bg)', color: 'var(--text-main)' }}
           />
         </div>
-        
+
         <div style={{ display: 'flex', gap: '1rem' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Category</label>
-            <select 
-              name="category" 
-              value={formData.category} 
-              onChange={handleChange} 
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
               required
               style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--glass-border)', backgroundColor: 'var(--glass-bg)', color: 'var(--text-main)' }}
             >
@@ -159,7 +159,7 @@ const Editor = () => {
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Date</label>
-            <input 
+            <input
               type="text" name="date" value={formData.date} onChange={handleChange} required
               style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--glass-border)', backgroundColor: 'var(--glass-bg)', color: 'var(--text-main)' }}
             />
@@ -167,23 +167,23 @@ const Editor = () => {
         </div>
 
         <div style={{ marginBottom: '2rem' }}>
-           <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Content</label>
-           <div style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '8px', overflow: 'hidden' }}>
-             <ReactQuill 
-               ref={quillRef}
-               theme="snow" 
-               value={formData.content} 
-               onChange={(val) => setFormData(prev => ({...prev, content: val}))} 
-               modules={modules}
-               style={{ height: '350px', border: 'none', color: 'var(--text-main)' }}
-             />
-           </div>
+          <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Content</label>
+          <div style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '8px', overflow: 'hidden' }}>
+            <ReactQuill
+              ref={quillRef}
+              theme="snow"
+              value={formData.content}
+              onChange={(val) => setFormData(prev => ({ ...prev, content: val }))}
+              modules={modules}
+              style={{ height: '350px', border: 'none', color: 'var(--text-main)' }}
+            />
+          </div>
         </div>
 
         <div>
           <label style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <input 
-              type="checkbox" name="published" checked={formData.published} onChange={handleChange} 
+            <input
+              type="checkbox" name="published" checked={formData.published} onChange={handleChange}
               style={{ transform: 'scale(1.2)' }}
             />
             Publish immediately (uncheck to keep as draft)

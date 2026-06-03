@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const [postsData, setPostsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
     fetch('/api/posts')
@@ -36,11 +37,37 @@ const Home = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
-          marginBottom: '3rem'
+          marginBottom: '2rem'
         }}>
           <h2 style={{ fontSize: '2.5rem' }}>Latest Write-ups</h2>
           <Link to="/" style={{ color: 'var(--primary-lilac-dark)', fontWeight: 600 }}>View All Posts →</Link>
         </div>
+        
+        {/* Category Tabs */}
+        {!loading && (
+          <div className="hide-scroll" style={{ display: 'flex', gap: '0.8rem', marginBottom: '2.5rem', overflowX: 'auto', paddingBottom: '0.5rem', WebkitOverflowScrolling: 'touch' }}>
+            {['All', ...Array.from(new Set(postsData.map(p => p.category).filter(Boolean)))].map(cat => (
+              <button 
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: '24px',
+                  border: `1px solid var(--glass-border)`,
+                  background: selectedCategory === cat ? 'var(--primary-lilac)' : 'var(--glass-bg)',
+                  color: selectedCategory === cat ? 'white' : 'var(--text-main)',
+                  cursor: 'pointer',
+                  fontWeight: selectedCategory === cat ? 600 : 500,
+                  whiteSpace: 'nowrap',
+                  backdropFilter: 'blur(10px)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
         
         {loading ? (
           <p style={{ textAlign: 'center' }}>Loading posts...</p>
@@ -50,8 +77,8 @@ const Home = () => {
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))',
             gap: '2.5rem'
           }}>
-            {postsData.length === 0 ? <p>No published posts available.</p> : null}
-            {postsData.map(post => {
+            {postsData.filter(post => selectedCategory === 'All' || post.category === selectedCategory).length === 0 ? <p>No published posts available for this category.</p> : null}
+            {postsData.filter(post => selectedCategory === 'All' || post.category === selectedCategory).map(post => {
               // Extract first image from content as fallback
               let featuredImage = post.image;
 
@@ -67,7 +94,7 @@ const Home = () => {
               let strip = post.content ? post.content.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim() : "";
               let excerpt = strip.length > 120 ? strip.substring(0, 120).trim() + '...' : strip;
               return (
-                <div key={post.id} style={{ minWidth: 0 }}>
+                <div key={post._id || post.id} style={{ minWidth: 0 }}>
                   <BlogCard {...post} image={featuredImage} excerpt={excerpt} />
                 </div>
               );
