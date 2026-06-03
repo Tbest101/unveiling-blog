@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import AdCarousel from '../components/AdCarousel';
 import BlogCard from '../components/BlogCard';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Home = () => {
   const [postsData, setPostsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const selectedCategory = searchParams.get('category') || 'All';
 
   useEffect(() => {
     fetch('/api/posts')
@@ -43,31 +45,6 @@ const Home = () => {
           <Link to="/" style={{ color: 'var(--primary-lilac-dark)', fontWeight: 600 }}>View All Posts →</Link>
         </div>
         
-        {/* Category Tabs */}
-        {!loading && (
-          <div className="hide-scroll" style={{ display: 'flex', gap: '0.8rem', marginBottom: '2.5rem', overflowX: 'auto', paddingBottom: '0.5rem', WebkitOverflowScrolling: 'touch' }}>
-            {['All', ...Array.from(new Set(postsData.map(p => p.category).filter(Boolean)))].map(cat => (
-              <button 
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                style={{
-                  padding: '8px 18px',
-                  borderRadius: '24px',
-                  border: `1px solid var(--glass-border)`,
-                  background: selectedCategory === cat ? 'var(--primary-lilac)' : 'var(--glass-bg)',
-                  color: selectedCategory === cat ? 'white' : 'var(--text-main)',
-                  cursor: 'pointer',
-                  fontWeight: selectedCategory === cat ? 600 : 500,
-                  whiteSpace: 'nowrap',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        )}
         
         {loading ? (
           <p style={{ textAlign: 'center' }}>Loading posts...</p>
