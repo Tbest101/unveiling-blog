@@ -85,13 +85,13 @@ const Navbar = () => {
                   padding: '0.5rem 0',
                   boxShadow: 'var(--shadow-md)'
                 }}>
-                  <Link to="/?category=All#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none', color: 'var(--text-main)', transition: 'background 0.2s' }} onClick={() => setDropdownOpen(false)}>All Categories</Link>
-                  <div style={{ padding: '0 20px', opacity: 0.5 }}><hr style={{ border: 'none', borderTop: '1px solid currentColor' }}/></div>
-                  <Link to="/?category=MEMORIES%20FROM%20CHILDHOOD#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none', color: 'var(--text-main)', transition: 'background 0.2s' }} onClick={() => setDropdownOpen(false)}>MEMORIES FROM CHILDHOOD</Link>
-                  <Link to="/?category=PARENTING#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none', color: 'var(--text-main)', transition: 'background 0.2s' }} onClick={() => setDropdownOpen(false)}>PARENTING</Link>
-                  <Link to="/?category=RELATIONSHIPS#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none', color: 'var(--text-main)', transition: 'background 0.2s' }} onClick={() => setDropdownOpen(false)}>RELATIONSHIPS</Link>
-                  <Link to="/?category=GROWTH#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none', color: 'var(--text-main)', transition: 'background 0.2s' }} onClick={() => setDropdownOpen(false)}>GROWTH</Link>
-                  <Link to="/?category=FAITH#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none', color: 'var(--text-main)', transition: 'background 0.2s' }} onClick={() => setDropdownOpen(false)}>FAITH</Link>
+                <Link className="dropdown-item" to="/?category=All#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none' }} onClick={() => setDropdownOpen(false)}>All Categories</Link>
+                <div style={{ padding: '0 20px', opacity: 0.5 }}><hr style={{ border: 'none', borderTop: '1px solid currentColor' }}/></div>
+                <Link className="dropdown-item" to="/?category=MEMORIES%20FROM%20CHILDHOOD#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none' }} onClick={() => setDropdownOpen(false)}>MEMORIES FROM CHILDHOOD</Link>
+                <Link className="dropdown-item" to="/?category=PARENTING#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none' }} onClick={() => setDropdownOpen(false)}>PARENTING</Link>
+                <Link className="dropdown-item" to="/?category=RELATIONSHIPS#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none' }} onClick={() => setDropdownOpen(false)}>RELATIONSHIPS</Link>
+                <Link className="dropdown-item" to="/?category=GROWTH#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none' }} onClick={() => setDropdownOpen(false)}>GROWTH</Link>
+                <Link className="dropdown-item" to="/?category=FAITH#blog" style={{ padding: '10px 20px', display: 'block', textDecoration: 'none' }} onClick={() => setDropdownOpen(false)}>FAITH</Link>
                 </div>
               </div>
             )}

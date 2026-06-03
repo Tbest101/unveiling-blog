@@ -250,3 +250,15 @@ section {
   0% { transform: translateX(0); }
   100% { transform: translateX(calc(-50% - 1rem)); }
 }
+
+/* Dropdown hover effects */
+.dropdown-item {
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(122, 158, 126, 0.15);
+  color: var(--primary-lilac-dark);
+  padding-left: 25px !important;
+}
