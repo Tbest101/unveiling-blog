@@ -119,7 +119,7 @@ const Dashboard = () => {
           </thead>
           <tbody>
             {posts.map(post => (
-              <tr key={post.id} style={{ borderBottom: '1px solid var(--glass-border)', transition: 'background 0.3s' }} className="dash-row">
+              <tr key={post._id || post.id} style={{ borderBottom: '1px solid var(--glass-border)', transition: 'background 0.3s' }} className="dash-row">
                 <td style={{ padding: '1.2rem' }}>
                   <div style={{ fontWeight: 600 }}>{post.title}</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{post.date}</div>
@@ -144,8 +144,8 @@ const Dashboard = () => {
                   </span>
                 </td>
                 <td style={{ padding: '1.2rem' }}>
-                  <Link to={`/admin/edit/${post.id}`} style={{ marginRight: '1rem', color: 'var(--primary-lilac-dark)', fontWeight: 600 }}>Edit</Link>
-                  <button onClick={() => deletePost(post.id)} style={{ color: '#ef4444', fontWeight: 600, border: 'none', background: 'none' }}>Delete</button>
+                  <Link to={`/admin/edit/${post._id || post.id}`} style={{ marginRight: '1rem', color: 'var(--primary-lilac-dark)', fontWeight: 600 }}>Edit</Link>
+                  <button onClick={() => deletePost(post._id || post.id)} style={{ color: '#ef4444', fontWeight: 600, border: 'none', background: 'none' }}>Delete</button>
                 </td>
               </tr>
             ))}

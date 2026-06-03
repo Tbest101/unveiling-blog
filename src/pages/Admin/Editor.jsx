@@ -73,7 +73,7 @@ const Editor = () => {
       fetch(`/api/posts?admin=true`)
         .then(res => res.json())
         .then(data => {
-          const post = data.find(p => p.id === id);
+          const post = data.find(p => p._id === id || p.id === id);
           if (post) setFormData(post);
         });
     }
