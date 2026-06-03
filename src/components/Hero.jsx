@@ -8,7 +8,7 @@ const Hero = () => {
       textAlign: 'center'
     }}>
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <h1 style={{ fontSize: '4rem', marginBottom: '1.5rem', maxWidth: '800px', margin: '0 auto 1.5rem', lineHeight: '1.1' }}>
+        <h1 style={{ fontSize: '4.5rem', fontWeight: 500, marginBottom: '1.5rem', maxWidth: '800px', margin: '0 auto 1.5rem', lineHeight: '1.2' }}>
           <span style={{ 
             background: 'var(--gradient-text)', 
             WebkitBackgroundClip: 'text',
@@ -17,13 +17,14 @@ const Hero = () => {
           }}>Unveiling with Me</span>
         </h1>
         <p style={{
-          fontSize: '1.5rem',
+          fontSize: '1.4rem',
           color: 'var(--text-muted)',
-          maxWidth: '600px',
-          margin: '0 auto 2.5rem',
-          fontWeight: 400
+          maxWidth: '650px',
+          margin: '0 auto 3rem',
+          fontWeight: 400,
+          lineHeight: '1.8'
         }}>
-          A platform where we shine the light of Jesus.
+          Stories and reflections on life and faith, shared in the light of Jesus.
         </p>
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
           <button className="btn-primary">Read Latest Posts</button>

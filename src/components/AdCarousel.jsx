@@ -21,20 +21,22 @@ const AdCarousel = () => {
   const displayAds = [...ads, ...ads];
 
   return (
-    <div className="ad-carousel-container">
+    <div className="ad-carousel-container" style={{ marginTop: '4rem' }}>
       <div className="container">
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
           <span style={{ 
-            fontSize: '0.75rem', 
-            fontWeight: 800, 
-            letterSpacing: '0.1em', 
+            fontSize: '0.8rem', 
+            fontWeight: 600, 
+            letterSpacing: '0.15em', 
             textTransform: 'uppercase',
-            color: 'var(--primary-lilac-dark)',
-            background: 'var(--primary-lilac-light)',
-            padding: '4px 12px',
-            borderRadius: '20px'
-          }}>Sponsored</span>
-          <div style={{ height: '1px', flex: 1, background: 'var(--glass-border)' }}></div>
+            color: 'var(--text-muted)',
+            background: 'var(--bg-white)',
+            border: '1px solid var(--glass-border)',
+            padding: '6px 16px',
+            borderRadius: '30px',
+            boxShadow: 'var(--shadow-sm)'
+          }}>Sponsored / Books</span>
+          <div style={{ height: '1px', flex: 1, background: 'linear-gradient(to right, var(--glass-border), transparent)' }}></div>
         </div>
       </div>
       
