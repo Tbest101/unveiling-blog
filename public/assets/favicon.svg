@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+  <!-- Transparent background - no fill rectangle -->
+
+  <!-- Outer sage green circle ring -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#8AA387" stroke-width="1.8"/>
+
+  <!-- Sun rays (top right area) -->
+  <g transform="translate(70,28)" stroke="#D8A87A" stroke-width="0.8" opacity="0.9">
+    <line x1="0" y1="-7" x2="0" y2="-10"/>
+    <line x1="4.9" y1="-4.9" x2="7.1" y2="-7.1"/>
+    <line x1="7" y1="0" x2="10" y2="0"/>
+    <line x1="4.9" y1="4.9" x2="7.1" y2="7.1"/>
+    <line x1="0" y1="7" x2="0" y2="10"/>
+    <line x1="-4.9" y1="4.9" x2="-7.1" y2="7.1"/>
+    <line x1="-7" y1="0" x2="-10" y2="0"/>
+    <line x1="-4.9" y1="-4.9" x2="-7.1" y2="-7.1"/>
+    <!-- Sun circle -->
+    <circle cx="0" cy="0" r="5" fill="#E9C9A8" stroke="none"/>
+  </g>
+
+  <!-- Botanical leaf branch (right side) -->
+  <g transform="translate(76,45)" stroke="#8AA387" stroke-width="1" fill="#A8C4A5" opacity="0.85">
+    <ellipse cx="0" cy="-12" rx="4" ry="7" transform="rotate(-20)"/>
+    <ellipse cx="5" cy="-5" rx="4" ry="7" transform="rotate(10)"/>
+    <ellipse cx="3" cy="4" rx="4" ry="6" transform="rotate(30)"/>
+  </g>
+
+  <!-- Open book (bottom) -->
+  <g transform="translate(50,72)">
+    <path d="M-15,0 Q-7,-6 0,-2 Q7,-6 15,0 L15,10 Q7,4 0,8 Q-7,4 -15,10 Z" fill="#D8C4B0" stroke="#8B6E4E" stroke-width="0.6" opacity="0.9"/>
+    <line x1="0" y1="-2" x2="0" y2="8" stroke="#8B6E4E" stroke-width="0.6"/>
+  </g>
+
+  <!-- Small birds (top left area) -->
+  <g stroke="#3A2F2F" stroke-width="0.8" fill="none" opacity="0.7">
+    <path d="M28,26 Q30,24 32,26"/>
+    <path d="M33,23 Q35,21 37,23"/>
+    <path d="M36,27 Q38,25 40,27"/>
+  </g>
+
+  <!-- "Unveiling" main script text -->
+  <text x="50" y="46" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="#2E1F1F" font-style="italic">Unveiling</text>
+
+  <!-- "with me" smaller text -->
+  <text x="50" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="8" fill="#8AA387" font-weight="600">with me</text>
+
+  <!-- Small heart -->
+  <text x="50" y="63" text-anchor="middle" font-size="5" fill="#C4907A">♡</text>
+
+  <!-- Curved bottom text "FAITH. IDENTITY. PURPOSE." -->
+  <path id="bottomArc" d="M 15,72 A 36,36 0 0,0 85,72" fill="none"/>
+  <text font-family="Arial, sans-serif" font-size="4.5" fill="#4E4545" letter-spacing="1.2">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">FAITH. IDENTITY. PURPOSE.</textPath>
+  </text>
+
+  <!-- Three dots on left -->
+  <circle cx="14" cy="52" r="1" fill="#8AA387" opacity="0.6"/>
+  <circle cx="14" cy="57" r="1" fill="#8AA387" opacity="0.4"/>
+  <circle cx="14" cy="62" r="1" fill="#8AA387" opacity="0.2"/>
+</svg>
