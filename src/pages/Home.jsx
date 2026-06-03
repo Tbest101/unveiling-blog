@@ -42,7 +42,7 @@ const Home = () => {
           marginBottom: '2rem'
         }}>
           <h2 style={{ fontSize: '2.5rem' }}>Latest Write-ups</h2>
-          <Link to="/" style={{ color: 'var(--primary-lilac-dark)', fontWeight: 600 }}>View All Posts →</Link>
+          <Link to="/#blog" style={{ color: 'var(--primary-lilac-dark)', fontWeight: 600 }} onClick={() => setTimeout(() => document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' }), 100)}>View All Posts →</Link>
         </div>
         
         
@@ -86,7 +86,9 @@ const Home = () => {
           <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
             Every Friday, I share a snippet of my latest unveilings and thoughts.
           </p>
-          <button className="btn-primary">Subscribe to Newsletter</button>
+          <a href="mailto:?subject=Subscribe to Unveiling with Me&body=Hi! I'd love to receive your weekly newsletter — Stories and reflections on life and faith." style={{ textDecoration: 'none' }}>
+            <button className="btn-primary">Subscribe to Newsletter</button>
+          </a>
         </div>
       </section>
     </>
